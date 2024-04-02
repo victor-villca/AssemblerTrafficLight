@@ -1,0 +1,127 @@
+[Project]
+Assembler=masm
+Type=Win32 App
+Description=login and sing up service
+Backup=$P\Bak\
+Group=1
+GroupExpand=1
+[Files]
+1=authentication.Asm
+2=authentication.Inc
+3=authentication.Rc
+4=authentication.dlg
+5=login.dlg
+[MakeFiles]
+0=authentication.rap
+1=authentication.rc
+2=authentication.asm
+3=authentication.obj
+4=authentication.res
+5=authentication.exe
+6=authentication.def
+7=authentication.dll
+8=authentication.txt
+9=authentication.lib
+10=authentication.mak
+11=authentication.hla
+12=authentication.com
+[MakeDef]
+Menu=1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0
+1=4,O,$B\RC.EXE /v,1
+2=3,O,$B\ML.EXE /c /coff /Cp /nologo /I"$I",2
+3=5,O,$B\LINK.EXE /SUBSYSTEM:WINDOWS /RELEASE /VERSION:4.0 /LIBPATH:"$L" /OUT:"$5",3,4
+4=0,0,,5
+5=rsrc.obj,O,$B\CVTRES.EXE,rsrc.res
+7=0,0,"$E\OllyDbg",5
+6=*.obj,O,$B\ML.EXE /c /coff /Cp /nologo /I"$I",*.asm
+11=4,O,$B\RC.EXE /v,1
+12=3,O,$B\ML.EXE /c /coff /Cp /Zi /nologo /I"$I",2
+13=5,O,$B\LINK.EXE /SUBSYSTEM:WINDOWS /DEBUG /VERSION:4.0 /LIBPATH:"$L" /OUT:"$5",3,4
+14=0,0,,5
+15=rsrc.obj,O,$B\CVTRES.EXE,rsrc.res
+16=*.obj,O,$B\ML.EXE /c /coff /Cp /nologo /I"$I",*.asm
+17=0,0,"$E\OllyDbg",5
+[Resource]
+[StringTable]
+[VerInf]
+[Group]
+Group=Assembly,Resources,Misc
+1=2
+2=2
+3=3
+4=3
+5=3
+[AutoLoad]
+AutoLoad=4,5,1,3,2
+[RADebugBP]
+1=
+2=
+[VersionControl]
+Settings=1246
+Milestones=129
+MilestoneEvery=10
+MilestoneEveryCurrent=0
+MilestoneOnBuild=0.0.0.0
+MilestoneOnTime=2
+MilestoneOnDate=0
+MilestoneOnDateWhen=1
+MilestoneOnDateStatus=0
+MilestoneOnDateDate=1
+MilestoneOnDateTimeYear=2024
+MilestoneOnDateTimeMonth=3
+MilestoneOnDateTimeDate=31
+MilestoneOnDateTimeHour=17
+MilestoneOnDateTimeMin=47
+MilestoneOnDateTimeSec=42
+MilestoneOnDateTimeStatus=0
+BackupLocation=C:\Users\villc\Downloads\RadASM (1)\RadASM\Masm\Projects\VCBackups\
+CompressionLevel=0
+DefaultComment=Project $N, $Z, Backup Created On $D At $T.
+ExcludeExt1=\
+ExcludeExt2=\
+ExcludeExt3=\
+ExcludeExt4=\
+FileVerLength=4
+FileVer2Range=0
+FileVer3Range=0
+FileVer4Range=0
+ProductVerLength=4
+ProductVer2Range=0
+ProductVer3Range=0
+ProductVer4Range=0
+[Colref]
+0=00FFFFFF
+1=00FFFFFF
+2=00FFFFFF
+3=00FFFFFF
+4=00FFFFFF
+5=00FFFFFF
+6=00FFFFFF
+7=00FFFFFF
+[PTimer]
+PTimer=13346845
+[Size]
+4=0,0,0,0
+1=0,0,0,0,209
+2=0,0,0,0,435
+3=0,0,0,0,0
+5=0,0,0,0
+[Collapse]
+1=
+2=
+3=
+[GroupExpand]
+GroupExpand=0,1,1,0
+[BookMark]
+0=
+1=
+2=
+3=
+4=
+5=
+6=
+7=
+8=
+9=
+[BreakPoint]
+0=

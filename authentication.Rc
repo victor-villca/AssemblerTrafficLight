@@ -1,0 +1,2 @@
+#include "Res/loginDlg.rc"
+#include "Res/authenticationDlg.rc"
