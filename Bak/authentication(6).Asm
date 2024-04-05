@@ -21,14 +21,12 @@ menuP proc hWin:HWND,uMsg:UINT,wParam:WPARAM,lParam:LPARAM
 
 	mov		eax,uMsg
 	.if eax==WM_INITDIALOG
-		invoke ShowWindow, hWin, SW_HIDE
-		invoke DialogBoxParam, hInstance, IDD_DIALOG2, NULL, addr loginRegister, hWin							
+		invoke DialogBoxParam, hInstance, IDD_DIALOG2, hWin, addr loginRegister, NULL							
 
 	.elseif eax==WM_COMMAND
 			mov eax, wParam
 			.if eax == LOGOUT_BUTTON
-				invoke ShowWindow, hWin, SW_HIDE
-				invoke DialogBoxParam, hInstance, IDD_DIALOG2, NULL, addr loginRegister, hWin
+				invoke DialogBoxParam, hInstance, IDD_DIALOG2, hWin, addr loginRegister, NULL
 			.endif
 	.elseif eax==WM_CLOSE
 		invoke EndDialog,hWin,0
@@ -42,10 +40,9 @@ menuP proc hWin:HWND,uMsg:UINT,wParam:WPARAM,lParam:LPARAM
 menuP endp
 
 loginRegister proc hWin:HWND,uMsg:UINT,wParam:WPARAM,lParam:LPARAM
- LOCAL hMainWin:HWND
+
 	mov		eax,uMsg
 	.if eax==WM_INITDIALOG
-		mov hMainWin, lParam
 	.elseif eax==WM_COMMAND
 		mov eax, wParam
 		.if eax == LOGIN_BUTTON
@@ -57,7 +54,6 @@ loginRegister proc hWin:HWND,uMsg:UINT,wParam:WPARAM,lParam:LPARAM
 				.if eax == 0
 				    invoke MessageBox, NULL, ADDR successLogin, ADDR loginTitle, MB_OK or MB_ICONINFORMATION
 				    invoke EndDialog,hWin,0
-				    invoke SendMessage, hMainWin, WM_SHOWWINDOW, TRUE, 0
 				.endif
 
 			.endif			

@@ -29,6 +29,8 @@ LOGOUT_BUTTON		equ 1002
 .data?
 
 hInstance			dd ?
+inputUser 				db 32 dup('0')
+inputPassword 			db 32 dup('0')
 
 ;#########################################################################
 
@@ -41,6 +43,5 @@ badUsernameMsg			db "Incorrect Username",0
 badPasswordMsg			db "Incorrect Password",0
 loginTitle				db "Registration",0
 errorTitle				db "Error -  Bad Credentials",0
-inputUser 				db 32 dup('0')
-inputPassword 			db 32 dup('0')
+
 

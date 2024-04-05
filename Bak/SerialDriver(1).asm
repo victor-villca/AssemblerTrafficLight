@@ -20,6 +20,9 @@ writeToSerial PROC message:DWORD
         ret
     .endif
     invoke SetFilePointer, file_handle, 0, 0, FILE_END
+    
+    
+    
       write_txt_file:
     	push message
     	call lstrlen 

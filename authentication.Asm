@@ -28,6 +28,22 @@ menuP proc hWin:HWND,uMsg:UINT,wParam:WPARAM,lParam:LPARAM
 			.if eax == LOGOUT_BUTTON
 				invoke DialogBoxParam, hInstance, IDD_DIALOG2, hWin, addr loginRegister, NULL
 			.endif
+			.if eax == OFF_BUTTON				
+				invoke 	writeToSerial, addr OffMessage
+				invoke MessageBox, NULL, ADDR semophoreOff, ADDR driverMessage, MB_OK 
+			.endif
+			.if eax == ON_BUTTON				
+				invoke 	writeToSerial, addr OnMessage
+				invoke MessageBox, NULL, ADDR semophoreOn, ADDR driverMessage, MB_OK
+			.endif
+			.if eax == PUSH_BUTTON_1				
+				invoke 	writeToSerial, addr PushMessage1
+				invoke MessageBox, NULL, ADDR push1, ADDR driverMessage, MB_OK
+			.endif
+			.if eax == PUSH_BUTTON_2				
+				invoke 	writeToSerial, addr PushMessage2
+				invoke MessageBox, NULL, ADDR push2, ADDR driverMessage, MB_OK
+			.endif
 	.elseif eax==WM_CLOSE
 		invoke EndDialog,hWin,0
 	.else

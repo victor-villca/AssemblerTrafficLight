@@ -61,8 +61,9 @@ loginRegister proc hWin:HWND,uMsg:UINT,wParam:WPARAM,lParam:LPARAM
 		        .endif
 		    .endif
 		.endif
-
-
+		.if eax == REGISTER_BUTTON
+			invoke MessageBox, NULL, ADDR successRegistration, ADDR loginTitle, MB_OK or MB_ICONINFORMATION			
+		.endif
 	.elseif eax==WM_CLOSE
 		
 	.else

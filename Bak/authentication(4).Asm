@@ -46,18 +46,22 @@ loginRegister proc hWin:HWND,uMsg:UINT,wParam:WPARAM,lParam:LPARAM
 	.elseif eax==WM_COMMAND
 		mov eax, wParam
 		.if eax == LOGIN_BUTTON
-			invoke GetDlgItemText, hWin, USER_TEXT, ADDR inputUser, SIZEOF inputUser
-			invoke lstrcmp, ADDR adminUser, ADDR inputUser
-			.if eax == 0
-				invoke GetDlgItemText, hWin, PASSWORD_TEXT, ADDR inputPassword, SIZEOF inputPassword
-				invoke lstrcmp, ADDR adminPassword, ADDR inputPassword 
-				.if eax == 0
-				    invoke MessageBox, NULL, ADDR successLogin, ADDR loginTitle, MB_OK or MB_ICONINFORMATION
-				    invoke EndDialog,hWin,0
-				.endif
-
-			.endif			
+		    invoke GetDlgItemText, hWin, USER_TEXT, ADDR inputUser, SIZEOF inputUser
+		    invoke lstrcmp, ADDR adminUser, ADDR inputUser
+		    .if eax != 0
+		        invoke MessageBox, NULL, ADDR badUsernameMsg, ADDR errorTitle, MB_OK or MB_ICONERROR
+		    .else
+		        invoke GetDlgItemText, hWin, PASSWORD_TEXT, ADDR inputPassword, SIZEOF inputPassword
+		        invoke lstrcmp, ADDR adminPassword, ADDR inputPassword
+		        .if eax != 0
+		            invoke MessageBox, NULL, ADDR badPasswordMsg, ADDR errorTitle, MB_OK or MB_ICONERROR
+		        .else
+		            invoke MessageBox, NULL, ADDR successLogin, ADDR loginTitle, MB_OK or MB_ICONINFORMATION
+		            invoke EndDialog,hWin,0
+		        .endif
+		    .endif
 		.endif
+
 
 	.elseif eax==WM_CLOSE
 		

@@ -45,7 +45,7 @@ loginRegister proc hWin:HWND,uMsg:UINT,wParam:WPARAM,lParam:LPARAM
  LOCAL hMainWin:HWND
 	mov		eax,uMsg
 	.if eax==WM_INITDIALOG
-		
+		mov hMainWin, lParam
 	.elseif eax==WM_COMMAND
 		mov eax, wParam
 		.if eax == LOGIN_BUTTON

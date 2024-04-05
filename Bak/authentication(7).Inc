@@ -10,7 +10,8 @@ includelib user32.lib
 includelib Comctl32.lib
 includelib shell32.lib
 
-DlgProc			PROTO	:HWND,:UINT,:WPARAM,:LPARAM
+menuP			PROTO	:HWND,:UINT,:WPARAM,:LPARAM
+loginRegister	PROTO	:HWND,:UINT,:WPARAM,:LPARAM
 
 .const
 
@@ -23,3 +24,12 @@ IDD_DIALOG1			equ 101
 hInstance			dd ?
 
 ;#########################################################################
+
+.data
+successLogin			db "Login Successful",0
+successRegistration		db "Registration Successful",0
+adminUser				db "admin",0
+adminPassword			db "123456789",0
+inputUser 				db 32 dup('0')
+inputPassword 			db 32 dup('0')
+
