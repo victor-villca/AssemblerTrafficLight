@@ -28,6 +28,22 @@ menuP proc hWin:HWND,uMsg:UINT,wParam:WPARAM,lParam:LPARAM
 			.if eax == LOGOUT_BUTTON
 				invoke DialogBoxParam, hInstance, IDD_DIALOG2, hWin, addr loginRegister, NULL
 			.endif
+			.if eax == OFF_BUTTON				
+				invoke 	writeToSerial, addr OffMessage
+				invoke MessageBox, NULL, ADDR semophoreOff, ADDR driverMessage, MB_OK 
+			.endif
+			.if eax == ON_BUTTON				
+				invoke 	writeToSerial, addr OnMessage
+				invoke MessageBox, NULL, ADDR semophoreOn, ADDR driverMessage, MB_OK
+			.endif
+			.if eax == PUSH_BUTTON_1				
+				invoke 	writeToSerial, addr PushMessage1
+				invoke MessageBox, NULL, ADDR push1, ADDR driverMessage, MB_OK or
+			.endif
+			.if eax == PUSH_BUTTON_2				
+				invoke 	writeToSerial, addr PushMessage2
+				invoke MessageBox, NULL, ADDR push2, ADDR driverMessage, MB_OK or
+			.endif
 	.elseif eax==WM_CLOSE
 		invoke EndDialog,hWin,0
 	.else
@@ -48,12 +64,12 @@ loginRegister proc hWin:HWND,uMsg:UINT,wParam:WPARAM,lParam:LPARAM
 		.if eax == LOGIN_BUTTON
 		    invoke GetDlgItemText, hWin, USER_TEXT, ADDR inputUser, SIZEOF inputUser
 		    invoke lstrcmp, ADDR adminUser, ADDR inputUser
-		    .if eax != 0  ; Check if the usernames are not the same
+		    .if eax != 0
 		        invoke MessageBox, NULL, ADDR badUsernameMsg, ADDR errorTitle, MB_OK or MB_ICONERROR
 		    .else
 		        invoke GetDlgItemText, hWin, PASSWORD_TEXT, ADDR inputPassword, SIZEOF inputPassword
 		        invoke lstrcmp, ADDR adminPassword, ADDR inputPassword
-		        .if eax != 0  ; Check if the passwords are not the same
+		        .if eax != 0
 		            invoke MessageBox, NULL, ADDR badPasswordMsg, ADDR errorTitle, MB_OK or MB_ICONERROR
 		        .else
 		            invoke MessageBox, NULL, ADDR successLogin, ADDR loginTitle, MB_OK or MB_ICONINFORMATION
@@ -61,8 +77,9 @@ loginRegister proc hWin:HWND,uMsg:UINT,wParam:WPARAM,lParam:LPARAM
 		        .endif
 		    .endif
 		.endif
-
-
+		.if eax == REGISTER_BUTTON
+			invoke MessageBox, NULL, ADDR successRegistration, ADDR loginTitle, MB_OK or MB_ICONINFORMATION			
+		.endif
 	.elseif eax==WM_CLOSE
 		
 	.else

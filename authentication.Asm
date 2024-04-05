@@ -44,6 +44,24 @@ menuP proc hWin:HWND,uMsg:UINT,wParam:WPARAM,lParam:LPARAM
 				invoke 	writeToSerial, addr PushMessage2
 				invoke MessageBox, NULL, ADDR push2, ADDR driverMessage, MB_OK
 			.endif
+			.if eax == CHANGE_RED
+				invoke GetDlgItemText, hWin, RED_TEXT, ADDR redTime, SIZEOF redTime
+				invoke lstrcat, ADDR redTimePrefix, ADDR redTime			
+				invoke 	writeToSerial, addr redTimePrefix
+			.endif
+			.if eax == CHANGE_YELLOW
+				invoke GetDlgItemText, hWin, YELLOW_TEXT, ADDR yellowTime, SIZEOF yellowTime
+				invoke lstrcat, ADDR yellowTimePrefix, ADDR yellowTime
+				invoke 	writeToSerial, addr yellowTimePrefix
+			
+			.endif
+			.if eax == CHANGE_GREEN
+				invoke GetDlgItemText, hWin, GREEN_TEXT, ADDR greenTime, SIZEOF greenTime
+				invoke lstrcat, ADDR greenTimePrefix, ADDR greenTime
+				invoke 	writeToSerial, addr greenTimePrefix
+					
+			
+			.endif
 	.elseif eax==WM_CLOSE
 		invoke EndDialog,hWin,0
 	.else
