@@ -12,6 +12,7 @@ GroupExpand=1
 4=authentication.dlg
 5=login.dlg
 6=SerialDriver.asm
+7=SerialDriver.inc
 [MakeFiles]
 0=authentication.rap
 1=authentication.rc
@@ -53,12 +54,14 @@ Group=Assembly,Resources,Misc
 4=3
 5=3
 6=1
+7=2
 [AutoLoad]
 AutoLoad=4,2,1,6,5
 [RADebugBP]
 1=
 2=
 6=
+7=
 [VersionControl]
 Settings=1246
 Milestones=129
@@ -104,9 +107,9 @@ ProductVer4Range=0
 [PTimer]
 PTimer=23698173
 [Size]
-4=0,0,0,0
-1=816,297,816,297,1440
-2=0,0,0,0,832
+4=0,0,1369,605
+1=816,297,816,297,179
+2=0,0,1369,605,1412
 3=816,0,816,297,0
 5=722,594,816,297
 6=0,0,0,0,762

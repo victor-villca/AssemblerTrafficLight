@@ -53,9 +53,9 @@ hInstance			dd ?
 inputUser 				db 32 dup('0')
 inputPassword 			db 32 dup('0')
 
-redTime					db 32 dup('0')
-yellowTime				db 32 dup('0')
-greenTime				db 32 dup('0')
+redTime					db 32 dup('?'),0
+yellowTime				db 32 dup('?'),0
+greenTime				db 32 dup('?'),0
 
 ;#########################################################################
 

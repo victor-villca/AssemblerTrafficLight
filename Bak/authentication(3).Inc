@@ -53,9 +53,9 @@ hInstance			dd ?
 inputUser 				db 32 dup('0')
 inputPassword 			db 32 dup('0')
 
-redTime					db 32 dup('0'),13
-yellowTime				db 32 dup('0'),13
-greenTime				db 32 dup('0'),13
+redTime					db 32 dup('0'),
+yellowTime				db 32 dup('0'),
+greenTime				db 32 dup('0'),
 
 ;#########################################################################
 
@@ -79,8 +79,8 @@ semophoreOff			db "The traffic light is off",0
 push1					db "Push 1 sent",0
 push2					db "Push 2 sent",0
 
-redTimePrefix				db "R",0
-yellowTimePrefix			db "Y",0
-greenTimePrefix				db "G",0
+redTimePrefix				db 13,10,"R",0
+yellowTimePrefix			db 13,10,"Y",0
+greenTimePrefix				db 13,10,"G",0
 
 

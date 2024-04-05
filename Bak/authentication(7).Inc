@@ -54,8 +54,8 @@ badUsernameMsg			db "Incorrect Username",0
 badPasswordMsg			db "Incorrect Password",0
 loginTitle				db "Registration",0
 errorTitle				db "Error -  Bad Credentials",0
-OffMessage 				db 13,10,"H",0
-OnMessage				db 13,10,"L",0
+OffMessage 				db 13,10,"L",0
+OnMessage				db 13,10,"H",0
 PushMessage1			db 13,10,"1",0
 PushMessage2			db 13,10,"2",0
 

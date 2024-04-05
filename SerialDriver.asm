@@ -3,37 +3,33 @@
 option casemap:none
 
 
-.DATA
-	file_handle HANDLE ?
-	filename db "buffer.txt",0
-	execute_path db "driver.exe",0
-	error_serial_driver_message db "file not found",0
-	
+include SerialDriver.inc
+
 .CODE
-writeToSerial PROC message:DWORD
+PUBLIC writeToSerial
+ 
+writeToSerial PROC messageToSend:DWORD
 
-    invoke CreateFileA, addr filename, GENERIC_WRITE, FILE_SHARE_WRITE, 0, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0
-    mov file_handle, eax 
+    invoke CreateFile, addr compPort, GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL    
+    cmp eax, INVALID_HANDLE_VALUE
+    je error_open_port
+    mov hComTx, eax
     
-    .if file_handle == INVALID_HANDLE_VALUE
-        invoke MessageBoxA, 0, addr error_serial_driver_message, 0, MB_OK
-        ret
-    .endif
-    invoke SetFilePointer, file_handle, 0, 0, FILE_END
-      write_txt_file:
-    	push message
-    	call lstrlen 
-    	push 0
-    	push 0
-    	push eax
-    	push message
-    	push file_handle
-    	call WriteFile
+    invoke WriteFile, hComTx, messageToSend, sizeof messageToSend, NULL, NULL
+    test eax, eax
+    jz error_write
+    
+    invoke Sleep, 500
+    
+    invoke CloseHandle, hComTx
+    ret
 
-    invoke CloseHandle, file_handle
+error_open_port:
+    invoke MessageBox, NULL, addr errorOpenSerialMessage, addr errorTitleSerial, MB_OK
+    ret
 
-    invoke WinExec, addr execute_path, SW_SHOWNORMAL
-
+error_write:
+    invoke MessageBox, NULL, addr errorWriteSerialMessage, addr errorTitleSerial, MB_OK
     ret
 
 writeToSerial ENDP

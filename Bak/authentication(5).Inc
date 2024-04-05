@@ -35,9 +35,12 @@ PUSH_BUTTON_2 		equ 1008
 
 
 CHANGE_RED 			equ 1011
-CHANGE_YELLOW 			equ 1011
-CHANGE_GREEN 			equ 1011
+CHANGE_YELLOW 			equ 1012
+CHANGE_GREEN 			equ 1013
 
+RED_TEXT			equ 1017
+YELLOW_TEXT			equ 1018
+GREEN_TEXT			equ 1019
 
   
 
@@ -76,8 +79,8 @@ semophoreOff			db "The traffic light is off",0
 push1					db "Push 1 sent",0
 push2					db "Push 2 sent",0
 
-redTimePrefix				db "R-",0
-yellowTimePrefix			db "Y-",0
-greenTimePrefix				db "G-",0
+redTimePrefix				db "R",0
+yellowTimePrefix			db "Y",0
+greenTimePrefix				db "G",0
 
 
